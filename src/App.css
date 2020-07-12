@@ -1,0 +1,13 @@
+#footer {
+  bottom:0 !important;
+  margin-top: 0 !important;
+}
+
+#root {
+   height: 100% !important;
+   margin: 0 !important;
+}
+
+#content {
+   min-height: calc(100vh - 454px);
+}
