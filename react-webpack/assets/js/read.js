@@ -2,8 +2,20 @@ var fs = require("fs");
 var os = require("os");
 
 var externalJavascriptFiles = [
-    'plugins/sample-1.js',
-    'plugins/sample-2.js'
+    'vendor/jquery-2.2.4.min.js',
+    'vendor/bootstrap.min.js',
+    'hoverIntent.js',
+    'superfish.min.js',
+    'jquery.ajaxchimp.min.js',
+    'jquery.magnific-popup.min.js',
+    'jquery.tabs.min.js',
+    'jquery.nice-select.min.js',
+    'isotope.pkgd.min.js',
+    'waypoints.min.js',
+    'jquery.counterup.min.js',
+    'simple-skillbar.js',
+    'owl.carousel.min.js',
+    'main.js'
 ]
 
 console.log(externalJavascriptFiles.length + " number of file(s).");
@@ -26,7 +38,7 @@ externalJavascriptFiles.map((element, index) => {
 });
 
 var externalJavascriptUrls = [
-    'https://code.jquery.com/jquery-3.4.1.min.js'
+    // 'https://code.jquery.com/jquery-3.4.1.min.js'
 ]
 
 console.log(externalJavascriptUrls.length + " number of Url(s).");
