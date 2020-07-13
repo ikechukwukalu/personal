@@ -4,8 +4,12 @@ import { Link } from "react-router-dom";
 import Isotope from "isotope-layout";
 import imagesLoaded from "imagesloaded";
 import OwlCarousel from 'react-owl-carousel';
+// import 'owl.carousel/dist/assets/owl.carousel.css';
+// import 'owl.carousel/dist/assets/owl.theme.default.css';
 import 'waypoints/lib/jquery.waypoints';
 import 'jquery.counterup';
+import magnificPopup from 'magnific-popup';
+
 
 // ABOUT ME SECTION
 export class AboutSection extends Component {
@@ -240,6 +244,13 @@ export class PortfolioSection extends Component {
         });
       });
     };
+    
+    $('.img-pop-up').magnificPopup({
+      type: 'image',
+      gallery: {
+          enabled: true
+      }
+    });
   }
 
   render() {
@@ -427,53 +438,11 @@ export class TestimonialsSection extends Component {
     };
   }
 
-  componentDidMount() {
-
-    // $('.active-testimonial').owlCarousel({
-    //         items: 2,
-    //         loop: true,
-    //         margin: 30,
-    //         autoplayHoverPause: true,
-    //         dots: true,
-    //         autoplay: true,
-    //         nav: true,
-    //         navText: ["<span class='lnr lnr-arrow-up'></span>", "<span class='lnr lnr-arrow-down'></span>"],
-    //         responsive: {
-    //             0: {
-    //                 items: 1
-    //             },
-    //             480: {
-    //                 items: 1,
-    //             },
-    //             768: {
-    //                 items: 2,
-    //             }
-    //         }
-    //   });
-
-    // $('.active-brand-carusel').owlCarousel({
-    //     items: 5,
-    //     loop: true,
-    //     autoplayHoverPause: true,
-    //     autoplay: true,
-    //     responsive: {
-    //         0: {
-    //             items: 1
-    //         },
-    //         455: {
-    //             items: 2
-    //         },            
-    //         768: {
-    //             items: 3,
-    //         },
-    //         991: {
-    //             items: 4,
-    //         },
-    //         1024: {
-    //             items: 5,
-    //         }
-    //     }
-    // }); 
+  navText = () => {
+    return [  
+      <span key={'1_1'} class='lnr lnr-arrow-up'></span>, 
+      <span key={'2_2'} class='lnr lnr-arrow-down'></span>
+    ];
   }
 
   render() {
@@ -495,15 +464,15 @@ export class TestimonialsSection extends Component {
             <div className="row">
                 <OwlCarousel
                     className="active-testimonial"
-                    items= {2}
-                    loop= {true}
-                    margin= {30}
-                    autoplayHoverPause= {true}
-                    dots= {true}
-                    autoplay= {true}
-                    nav= {true}
-                    navText= {[<span class='lnr lnr-arrow-up'></span>, <span class='lnr lnr-arrow-down'></span>]}
-                    responsive= {{
+                    items={2}
+                    loop
+                    margin={30}
+                    autoplayHoverPause
+                    dots
+                    autoplay
+                    nav
+                    navText={this.navText}
+                    responsive={{
                         0: {
                             items: 1
                         },
@@ -552,44 +521,6 @@ export class TestimonialsSection extends Component {
                     </div>
                   </div>
                 </OwlCarousel>
-              {/* <div className="active-testimonial">
-                <div className="single-testimonial item d-flex flex-row">
-                  <div className="thumb">
-                    <img
-                      className="img-fluid"
-                      src={this.state.base_url+"assets/img/elements/user1.png"}
-                      alt=""
-                    />
-                  </div>
-                  <div className="desc">
-                    <p>
-                      Do you want to be even more successful? Learn to love
-                      learning and growth. The more effort you put into
-                      improving your skills, the bigger the payoff you.
-                    </p>
-                    <h4>Harriet Maxwell</h4>
-                    <p>CEO at Google</p>
-                  </div>
-                </div>
-                <div className="single-testimonial item d-flex flex-row">
-                  <div className="thumb">
-                    <img
-                      className="img-fluid"
-                      src={this.state.base_url+"assets/img/elements/user2.png"}
-                      alt=""
-                    />
-                  </div>
-                  <div className="desc">
-                    <p>
-                      A purpose is the eternal condition for success. Every
-                      former smoker can tell you just how hard it is to stop
-                      smoking cigarettes. However.
-                    </p>
-                    <h4>Carolyn Craig</h4>
-                    <p>CEO at Facebook</p>
-                  </div>
-                </div>
-              </div> */}
             </div>
           </div>
         </section>
@@ -606,29 +537,6 @@ export class PricingSection extends Component {
       base_url: this.props.base_url,
       api_url: this.props.api_url
     };
-  }
-
-  componentDidMount() {
-    var allPanels = $(".accordion > dd").hide();
-    allPanels.first().slideDown("easeOutExpo");
-    $(".accordion").each(function() {
-        $(this).find("dt > a").first().addClass("active").parent().next().css({
-            display: "block"
-        });
-    });
-
-
-    $(document).on('click', '.accordion > dt > a', function(e) {
-
-        var current = $(this).parent().next("dd");
-        $(this).parents(".accordion").find("dt > a").removeClass("active");
-        $(this).addClass("active");
-        $(this).parents(".accordion").find("dd").slideUp("easeInExpo");
-        $(this).parent().next().slideDown("easeOutExpo");
-
-        return false;
-
-    });
   }
 
   render() {
@@ -754,11 +662,11 @@ export class BrandsSection extends Component {
             <div className="brand-wrap">
               <OwlCarousel
                 className="row align-items-center active-brand-carusel justify-content-start no-gutters"
-                items= {5}
-                loop= {true}
-                autoplayHoverPause= {true}
-                autoplay= {true}
-                responsive= {{
+                items={5}
+                loop
+                autoplayHoverPause
+                autoplay
+                responsive={{
                     0: {
                         items: 1
                     },
@@ -802,33 +710,6 @@ export class BrandsSection extends Component {
                   </a>
                 </div>
               </OwlCarousel>
-              {/* <div className="row align-items-center active-brand-carusel justify-content-start no-gutters">
-                <div className="col single-brand">
-                  <a href="#">
-                    <img className="mx-auto" src={this.state.base_url+"assets/img/l1.png"} alt="" />
-                  </a>
-                </div>
-                <div className="col single-brand">
-                  <a href="#">
-                    <img className="mx-auto" src={this.state.base_url+"assets/img/l2.png"} alt="" />
-                  </a>
-                </div>
-                <div className="col single-brand">
-                  <a href="#">
-                    <img className="mx-auto" src={this.state.base_url+"assets/img/l3.png"} alt="" />
-                  </a>
-                </div>
-                <div className="col single-brand">
-                  <a href="#">
-                    <img className="mx-auto" src={this.state.base_url+"assets/img/l4.png"} alt="" />
-                  </a>
-                </div>
-                <div className="col single-brand">
-                  <a href="#">
-                    <img className="mx-auto" src={this.state.base_url+"assets/img/l5.png"} alt="" />
-                  </a>
-                </div>
-              </div> */}
             </div>
           </div>
         </section>

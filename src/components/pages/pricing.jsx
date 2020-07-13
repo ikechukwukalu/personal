@@ -3,7 +3,6 @@ import $ from "jquery";
 import { Link } from "react-router-dom";
 
 import ActiveLinkIds from "../helpers/active-links";
-import Scripts from "../scripts/scripts";
 import { PricingSection, PageBannerSection } from "./sections";
 
 class Pricing extends Component {
@@ -16,10 +15,20 @@ class Pricing extends Component {
     };
   }
 
+  componentDidMount() {
+    var allPanels = $(".accordion > dd").hide();
+    allPanels.first().slideDown("easeOutExpo");
+    $(".accordion").each(function() {
+        $(this).find("dt > a").first().addClass("active").parent().next().css({
+            display: "block"
+        });
+    });
+  }
+
   render() {
     return (
       <Fragment>
-        <PageBannerSection base_url={this.state.base_url} api_url={this.state.api_url} title={"Portfolio"} url={"/portfolio"}  />
+        <PageBannerSection base_url={this.state.base_url} api_url={this.state.api_url} title={"Pricing Plan"} url={"/pricing"}  />
         <PricingSection base_url={this.state.base_url} api_url={this.state.api_url}  />
         <section className="faq-area pb-120">
             <div className="container">
@@ -71,7 +80,6 @@ class Pricing extends Component {
             </div>	
         </section>
         <ActiveLinkIds pathname={this.state.path} />
-        {/* <Scripts base_url={this.state.base_url}  /> */}
       </Fragment>
     );
   }

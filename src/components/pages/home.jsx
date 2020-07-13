@@ -3,7 +3,7 @@ import $ from "jquery";
 import { Link } from "react-router-dom";
 
 import ActiveLinkIds from "../helpers/active-links";
-import Scripts from "../scripts/scripts";
+import { sweetAlert,sweetAlertHtml,toastAlert } from "../helpers/active-links";
 
 import { AboutSection, ServicesSection, FactsSection, PortfolioSection, TestimonialsSection, PricingSection, BrandsSection } from "./sections";
 
@@ -155,7 +155,6 @@ class Home extends Component {
         </section>
         <BrandsSection base_url={this.state.base_url} api_url={this.state.api_url}  />
         <ActiveLinkIds pathname={this.state.path} />
-        {/* <Scripts base_url={this.state.base_url}  /> */}
       </Fragment>
     );
   }

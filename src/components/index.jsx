@@ -5,7 +5,6 @@ import $ from 'jquery';
 import 'bootstrap/dist/js/bootstrap.bundle';
 
 import NoMatch from './helpers/no-match';
-import Scripts from './scripts/scripts';
 
 import Header from './includes/header.jsx';
 import Footer from './includes/footer.jsx';
@@ -27,6 +26,78 @@ class Components extends Component {
       base_url: this.props.base_url,
       api_url: this.props.api_url
     }
+  }
+
+  componentDidMount() {
+    $(document).ready(function() {
+
+        // $('html, body').hide();
+
+        // if (window.location.hash) {
+
+        //     setTimeout(function() {
+
+        //         $('html, body').scrollTop(0).show();
+
+        //         $('html, body').animate({
+
+        //             scrollTop: $(window.location.hash).offset().top - 108
+
+        //         }, 1000)
+
+        //     }, 0);
+
+        // } else {
+
+        //     $('html, body').show();
+
+        // }
+        
+        // Get current path and find target link
+        var path = window.location.pathname.split("/").pop();
+
+        // Account for home page with empty path
+        if (path == '') {
+            path = 'index.html';
+        }
+
+        var target = $('nav a[href="' + path + '"]');
+        // Add active class to target link
+        target.addClass('menu-active');
+        
+        if ($('.menu-has-children ul>li a').hasClass('menu-active')) {
+            $('.menu-active').closest("ul").parentsUntil("a").addClass('parent-active');
+        }
+    });
+    $(document).on('click', '.accordion > dt > a', function(e) {
+
+        var current = $(this).parent().next("dd");
+        $(this).parents(".accordion").find("dt > a").removeClass("active");
+        $(this).addClass("active");
+        $(this).parents(".accordion").find("dd").slideUp("easeInExpo");
+        $(this).parent().next().slideDown("easeOutExpo");
+
+        return false;
+
+    });
+    $(window).scroll( function(){
+        if ($(this).scrollTop() > 100) {
+            $('#header').addClass('header-scrolled');
+        } else {
+            $('#header').removeClass('header-scrolled');
+        }
+        /* Check the location of each element hidden */
+        $('.hidden').each( function(i){
+          
+            var bottom_of_object = $(this).offset().top + $(this).outerHeight();
+            var bottom_of_window = $(window).scrollTop() + $(window).height();
+          
+            /* If the object is completely visible in the window, fadeIn it */
+            if( bottom_of_window > bottom_of_object ){
+              $(this).animate({'opacity':'1'},700);
+            }
+        });
+    });
   }
 
   render() {
@@ -102,8 +173,7 @@ class Components extends Component {
         <Footer key="footer"
           base_url={this.state.base_url} 
           api_url={this.state.api_url} 
-        />,
-        <Scripts key="scripts" base_url={this.state.base_url}  />
+        />
     ];
   }
 }

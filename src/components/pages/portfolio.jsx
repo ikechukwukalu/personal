@@ -3,7 +3,6 @@ import $ from "jquery";
 import { Link } from "react-router-dom";
 
 import ActiveLinkIds from "../helpers/active-links";
-import Scripts from "../scripts/scripts";
 import { PortfolioSection, PageBannerSection } from "./sections";
 
 class Portfolio extends Component {
@@ -22,7 +21,6 @@ class Portfolio extends Component {
         <PageBannerSection base_url={this.state.base_url} api_url={this.state.api_url} title={"Portfolio"} url={"/portfolio"}  />
         <PortfolioSection base_url={this.state.base_url} api_url={this.state.api_url}  />
         <ActiveLinkIds pathname={this.state.path} />
-        {/* <Scripts base_url={this.state.base_url}  /> */}
       </Fragment>
     );
   }

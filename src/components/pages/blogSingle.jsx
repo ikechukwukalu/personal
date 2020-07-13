@@ -3,7 +3,6 @@ import $ from "jquery";
 import { Link } from "react-router-dom";
 
 import ActiveLinkIds from "../helpers/active-links";
-import Scripts from "../scripts/scripts";
 import {
   PageBannerSection,
 } from "./sections";
@@ -623,7 +622,6 @@ class BlogSingle extends Component {
           </div>
         </section>
         <ActiveLinkIds pathname={this.state.path} />
-        {/* <Scripts base_url={this.state.base_url}  /> */}
       </Fragment>
     );
   }

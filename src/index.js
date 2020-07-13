@@ -4,6 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// (function (original) {
+//     console.enableLogging = function () {
+//         console.log = original;
+//     };
+//     console.disableLogging = function () {
+//         console.log = function () {};
+//     };
+// })(console.log);
+
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
