@@ -15,7 +15,7 @@ class App extends Component {
 
   render() {
     return (
-        <Router>
+        <Router basename="/">
           <ScrollToTop>
             <Components base_url={this.state.base_url} api_url={this.state.api_url} />
           </ScrollToTop>
